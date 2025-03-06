@@ -5,6 +5,7 @@
  */
 const isUnique = (input) => {
     if (input && typeof input == "string" && input != " ") {
+        input = input.toLocaleLowerCase();
         let inputArray = input.split("");
 
         if (inputArray.length > 1) {
@@ -38,7 +39,7 @@ try {
     // console.log(isUnique(1));
     // console.log(isUnique(" "));
     // console.log(isUnique("a"));
-    console.log(isUnique("aa"));
+    console.log(isUnique("aA"));
 } catch (error) {
     console.log(error);
 }
