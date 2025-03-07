@@ -10,3 +10,6 @@ console.log(isUnique("World"));       // true
 console.log(isUnique("JavaScript"));  // false (because 'a' appears twice)
 console.log(isUnique("Node.js"));     // true  
 console.log(isUnique("Chat GPT!"));   // false (because 'T' appears twice)`
+
+## How to run application
+On the terminal enter `npm run start` which will provide a prompt for input

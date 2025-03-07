@@ -4,8 +4,10 @@
   "description": "A program that determines whether a string is unique by checking whether or not the string has repeating characters.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app.js"
   },
+  "type": "module",
   "author": "nkululeko vuyo zikode",
   "license": "ISC"
 }

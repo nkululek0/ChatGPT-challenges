@@ -1,45 +1,22 @@
-/**
- * Determines whether a string is unique by checking whether or not the string has repeating characters.
- * @param { string } input The string that is going to processed and checked if it is unique
- * @returns bool
- */
-const isUnique = (input) => {
-    if (input && typeof input == "string" && input != " ") {
-        input = input.toLocaleLowerCase();
-        let inputArray = input.split("");
+import isUnique from "./src/is-unique.js";
+import readline from "node:readline";
 
-        if (inputArray.length > 1) {
-            let result = true;
-            let inputCharacterMap = new Object({});
+const readLineInterface = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+});
 
-            for (let character of inputArray) {
-                if (inputCharacterMap.hasOwnProperty(character)) {
-                    result = false;
-                    break;
-                }
-                else {
-                    inputCharacterMap[character] = 1;
-                }
-            }
-
-            return result;
-        }
-        else {
-            // One character automatically means the string is unique
-            return true;
-        }
+readLineInterface.question("Enter a string: ", answer => {
+    try {
+        let result = isUnique(answer);
+    
+        result ? console.log("String is unique") : console.log("String is not unique");
     }
-    else {
-        throw new Error("Invalid input, please make sure that you enter a valid string");
+    catch (error) {
+        console.log(error.stack);
     }
-};
-
-try {
-    // console.log(isUnique(""));
-    // console.log(isUnique(1));
-    // console.log(isUnique(" "));
-    // console.log(isUnique("a"));
-    console.log(isUnique("aA"));
-} catch (error) {
-    console.log(error);
-}
+    finally {
+        readLineInterface.close();
+    }
+});
