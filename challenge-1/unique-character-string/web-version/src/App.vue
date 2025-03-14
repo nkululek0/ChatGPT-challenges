@@ -3,11 +3,11 @@
   import isUnique from "./assets/is-unique";
   
   const uniqueStringInput = ref("");
-  const facialExpressionType = {
+  const _facialExpressionType = {
     thinking: "thinking",
     frowning: "frowning",
     smiling: "smiling"
-  }
+  };
   
   const checkUniqueString = () => {
     const facialExpressionAttributeHolder = document.querySelector("[attr-facial-expression]");
@@ -15,20 +15,15 @@
     uniqueStringInput.value = "";
     
     try {
-      let uniqueString = isUnique(inputString);
+      let facialExpression = isUnique(inputString) ? "smiling" : "frowning";
 
-      if (uniqueString) {
-        setFacialExpression("smiling", facialExpressionAttributeHolder);
-      }
-      else {
-        setFacialExpression("frowning", facialExpressionAttributeHolder);
-      }
+      _setFacialExpression(facialExpression, facialExpressionAttributeHolder);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const setFacialExpression = (facialExpression, targetElement) => {
+  const _setFacialExpression = (facialExpression, targetElement) => {
     targetElement.setAttribute("attr-facial-expression", facialExpression);
   };
 </script>
@@ -188,32 +183,13 @@
     display: none;
   }
 
-  /** Frowning Expression **/
-  [attr-facial-expression="frowning"] .mouth {
-      height: 30px;
-      border-color: #000 transparent transparent transparent;
-      border-radius: 50% / 25px 25px 0 0;
-      margin-top: 50%;
+  .unique-string {
+    color: green;
   }
 
-  [attr-facial-expression="frowning"] .non-unique-string {
-    display: block;
+  .non-unique-string {
+    color: #FF0000;
   }
-
-  /** END Frowning Expression **/
-
-  /** Smiling Expression **/
-  [attr-facial-expression="smiling"] .mouth {
-    border-radius: 50% / 0px 0px 22px 22px;
-    width: 57px;
-    background-color: #fff;
-  }
-
-  [attr-facial-expression="smiling"] .unique-string {
-    display: block;
-  }
-
-  /** END Smiling Expression **/
 
   /** Thinking Expression **/
   [attr-facial-expression="thinking"] .eye-pupil {
@@ -226,4 +202,37 @@
   }
 
   /** END Thinking Expression **/
+
+  /** Frowning Expression **/
+  .main-content-container[attr-facial-expression="frowning"] {
+    border: 2px solid #FF0000;
+  }
+
+  [attr-facial-expression="frowning"] .mouth {
+      height: 30px;
+      border-color: #000 transparent transparent transparent;
+      border-radius: 50% / 25px 25px 0 0;
+      margin-top: 50%;
+  }
+
+  [attr-facial-expression="frowning"] .non-unique-string {
+    display: block;
+  }
+  /** END Frowning Expression **/
+
+  /** Smiling Expression **/
+  .main-content-container[attr-facial-expression="smiling"] {
+      border: 2px solid green;
+  }
+
+  [attr-facial-expression="smiling"] .mouth {
+    border-radius: 50% / 0px 0px 22px 22px;
+    width: 60px;
+    background-color: #fff;
+  }
+
+  [attr-facial-expression="smiling"] .unique-string {
+    display: block;
+  }
+  /** END Smiling Expression **/
 </style>
